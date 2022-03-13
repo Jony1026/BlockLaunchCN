@@ -1,0 +1,1 @@
+function print(msg){ android.widget.Toast.makeText(ToolBox.getContext(),msg,android.widget.Toast.LENGTH_LONG).show(); };
