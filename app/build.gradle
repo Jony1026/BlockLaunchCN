@@ -1,0 +1,72 @@
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+}
+
+android {
+    compileSdkVersion 29
+    buildToolsVersion '30.0.3'
+
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']
+        }
+    }
+    defaultConfig {
+        applicationId "org.libtlauncher.toolbox"
+        minSdkVersion 21
+        targetSdkVersion 29
+        versionCode 210617
+        versionName "2.617 public-version"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        externalNativeBuild {
+           ndk{
+               abiFilters "armeabi-v7a"
+           }
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    externalNativeBuild {
+        ndkBuild{
+            path file("src/main/jni/Android.mk") //
+        }
+    }
+    ndkVersion "17.2.4988734"
+}
+
+dependencies {
+    //  implementation fileTree(dir: "libs", include: ["*.jar"])
+
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+
+    compileOnly files('libs/XposedAPI.jar')
+    implementation files('libs/rhino-1.7.10.jar')
+    implementation files('libs/BmobSDK_3.7.4_20190523.jar')
+    implementation files('libs/rxjava-2.2.2.jar')
+    implementation files('libs/rxandroid-2.1.0.jar')
+    implementation files('libs/gson-2.8.5.jar')
+
+
+    implementation 'org.reactivestreams:reactive-streams:1.0.2'
+    implementation 'com.github.bumptech.glide:glide:4.8.0'
+    implementation 'com.github.florent37:glidepalette:1.0.6'
+
+    implementation 'androidx.appcompat:appcompat:1.2.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
+
+    implementation 'com.github.f0ris.sweetalert:library:1.5.1'
+    implementation 'com.google.android.material:material:1.2.0'
+    implementation 'com.github.TheHasnatBD:SweetToast:1.0.2'
+    implementation 'com.squareup.okhttp3:okhttp:3.10.0'
+
+}
+repositories {
+    mavenCentral()
+}
